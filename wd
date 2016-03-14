@@ -7,7 +7,7 @@ _wdd() {
   echo "$wdd"
 }
 
-_shift_points() {
+_warp_points() {
   ls "$(_wdd)"
 }
 
@@ -51,7 +51,7 @@ _wd_autocomplete() {
 
     COMPREPLY=($(compgen -W "$completions" -P "$point/$subfolders" -- $current))
   else
-    COMPREPLY=($(compgen -W "$(_shift_points)" -- $current))
+    COMPREPLY=($(compgen -W "$(_warp_points)" -- $current))
   fi
 }
 
@@ -66,19 +66,19 @@ wd() {
   case "x$1" in
     xadd)
       if ln -s "$PWD" "$point_path" &> /dev/null; then
-        echo "Added shift point '$point_name' ($PWD)"
+        echo "Added warp point '$point_name' ($PWD)"
         return 0
       else
-        echo "Error adding shift point '$point_name' ($PWD)"
+        echo "Error adding warp point '$point_name' ($PWD)"
         return 1
       fi
     ;;
     xrm)
       if rm -f "$point_path" &> /dev/null; then
-        echo "Removed shift point '$point_name' ($point_destination)"
+        echo "Removed warp point '$point_name' ($point_destination)"
         return 0
       else
-        echo "Error removing shift point '$point_name' ($point_destination)"
+        echo "Error removing warp point '$point_name' ($point_destination)"
         return 1
       fi
     ;;
@@ -90,11 +90,11 @@ wd() {
     x-h | x--help | x)
       echo "Usage: wd [command] <point_name>"
       echo "Commands:"
-      echo "  add <point_name>    Adds the current working directory to your shift points"
-      echo "  rm <point_name>     Removes the named point from your shift points"
-      echo "  ls                  Prints all shift points"
-      echo "  ls <point_name>     Prints all shift points matching the specified name"
-      echo "  -                   Shifts to previous working directory"
+      echo "  add <point_name>    Adds the current working directory to your warp points"
+      echo "  rm <point_name>     Removes the named point from your warp points"
+      echo "  ls                  Prints all warp points"
+      echo "  ls <point_name>     Prints all warp points matching the specified name"
+      echo "  -                   warps to previous working directory"
       echo "  -h, --help          Prints this lovely message"
       return 0
     ;;
@@ -108,14 +108,14 @@ wd() {
     ;;
   esac
 
-  # if we get here, we're shifting
+  # if we get here, we're warping
   local requested_point="$(_point_from_path "$1")"
   local subpath="$(_path_without_point "$1")"
 
   point_path="$wdd/$requested_point"
 
   if [[ ! -L "$point_path" ]]; then
-    echo "Can't shift to point '$requested_point' because it doesn't exist."
+    echo "Can't warp to point '$requested_point' because it doesn't exist."
     return 1
   fi
 

@@ -2,7 +2,7 @@ source $SHPEC_ROOT/../wd
 
 describe "wd"
   wdd="$(_wdd)"
-  describe "adding a shift point"
+  describe "adding a warp point"
     it "creates a symlink"
       wd add test_point &> /dev/null
 
@@ -24,7 +24,7 @@ describe "wd"
     end
   end
 
-  describe "removing a shift point"
+  describe "removing a warp point"
     it "removes a symlink"
       wd add test_point &> /dev/null
       wd rm test_point &> /dev/null
@@ -35,14 +35,14 @@ describe "wd"
     end
   end
 
-  describe "shifting to a point"
+  describe "warping to a point"
     it "changes your working directory"
       cd /tmp
       wd add test_point &> /dev/null
       cd - &> /dev/null
-      shifted_pwd="$(wd test_point && pwd)"
+      warped_pwd="$(wd test_point && pwd)"
 
-      assert equal "$shifted_pwd" "/tmp"
+      assert equal "$warped_pwd" "/tmp"
 
       rm "$wdd/test_point"
     end
@@ -59,16 +59,16 @@ describe "wd"
       mkdir subfolder
       wd add test_point &> /dev/null
       cd - &> /dev/null
-      shifted_pwd="$(wd test_point/subfolder && pwd)"
+      warped_pwd="$(wd test_point/subfolder && pwd)"
 
-      assert equal "$shifted_pwd" "/tmp/subfolder"
+      assert equal "$warped_pwd" "/tmp/subfolder"
 
       rm "$wdd/test_point"
       rmdir /tmp/subfolder
     end
   end
 
-  describe "listing your shift points"
+  describe "listing your warp points"
     it "lists points with spaces"
       path_with_spaces="/tmp/file with spaces/"
       mkdir -p "$path_with_spaces" && cd "$path_with_spaces"

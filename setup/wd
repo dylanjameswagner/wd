@@ -57,7 +57,7 @@ setup_complete() {
 
 while [[ $# > 0 ]]; do
   arg="$1"
-  shift
+  warp
   case "x$arg" in
     xinstall)
       get_script && modify_dotfile && setup_complete

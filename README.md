@@ -2,20 +2,20 @@
 
 ### Examples
 ```bash
-# add a shift point
+# add a warp point
 cd /freakishly/long/path/that/i/have/to/type/a/fuck/load
 wd add flp
 
-# shift to that point
+# warp to that point
 wd flp
 
-# shift to a subfolder of that point
+# warp to a subfolder of that point
 wd flp/subfolder/of/that/point
 
-# remove a shift point
+# remove a warp point
 wd rm flp
 
-# list all shift points and their destinations
+# list all warp points and their destinations
 wd ls
 ```
 
