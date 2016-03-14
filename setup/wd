@@ -18,7 +18,7 @@ Actions
 }
 
 get_script() {
-  curl -s https://raw.github.com/troyxmccall/wd/master/wd > $HOME/.wd
+  curl -s https://raw.githubusercontent.com/troyxmccall/wd/master/wd > $HOME/.wd
 }
 
 symlink_wd() {
