@@ -3,7 +3,7 @@
 ### Examples
 ```bash
 # add a warp point
-cd /freakishly/long/path/that/i/have/to/type/a/fuck/load
+cd /freakishly/long/path/that/i/have/to/type/a/lot
 wd add flp
 
 # warp to that point
@@ -51,4 +51,4 @@ source "<PATH_TO_wd_SCRIPT>"
 ```
 #### License
 
-Do whatever the fuck you want. Maximum Warp. Engage.
+Maximum Warp. Engage.
